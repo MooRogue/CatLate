@@ -5,7 +5,7 @@ options:
 
 settings:
   base:
-    PRODUCT_BUNDLE_IDENTIFIER: com.catlyte
+    PRODUCT_BUNDLE_IDENTIFIER: project.catlyte.CatLate
     SWIFT_VERSION: 5.0
     IPHONEOS_DEPLOYMENT_TARGET: 18.0
     MARKETING_VERSION: 0.0.1
@@ -41,7 +41,7 @@ targets:
       base:
         CODE_SIGN_STYLE: Automatic
         GENERATE_INFOPLIST_FILE: YES
-        PRODUCT_BUNDLE_IDENTIFIER: com.catlyte.tests
+        PRODUCT_BUNDLE_IDENTIFIER: project.catlyte.CatLate.tests
 
 schemes:
   CatLate:

@@ -84,7 +84,7 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
 xcrun simctl install booted ./.derivedData/Build/Products/Debug-iphonesimulator/CatLate.app
 
 DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
-xcrun simctl launch booted com.catlyte
+xcrun simctl launch booted project.catlyte.CatLate
 ```
 
 ## Notes
