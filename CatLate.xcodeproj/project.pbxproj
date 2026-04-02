@@ -13,6 +13,7 @@
 		7305666A01894D4B2DC95BE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49DCC7E897DE11F66DCCDE0 /* ContentView.swift */; };
 		B6BCFF03F57B6FB284B1E591 /* SpeechRecognizerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15457149DB03422327CB6272 /* SpeechRecognizerService.swift */; };
 		BAA4B1486D07C1BAF79BD616 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4CC35A485609970F0FE36A /* AppLanguage.swift */; };
+		D711ACF81B97EEA32A1DAD94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31EB2E103316F8183F8BFAE8 /* Assets.xcassets */; };
 		F3A23012EA4D46A49D04A94A /* CatLateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65329164CB0AFE828270CCF3 /* CatLateApp.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		15457149DB03422327CB6272 /* SpeechRecognizerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerService.swift; sourceTree = "<group>"; };
 		24BD1659A5AC040810644A24 /* SpeechPlaybackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechPlaybackService.swift; sourceTree = "<group>"; };
+		31EB2E103316F8183F8BFAE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65329164CB0AFE828270CCF3 /* CatLateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLateApp.swift; sourceTree = "<group>"; };
 		AD2C440839460F63CF124C74 /* CatLateTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CatLateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49DCC7E897DE11F66DCCDE0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			children = (
 				FF4CC35A485609970F0FE36A /* AppLanguage.swift */,
 				D21E07E5BDF2E39E327C9AD2 /* AppViewModel.swift */,
+				31EB2E103316F8183F8BFAE8 /* Assets.xcassets */,
 				65329164CB0AFE828270CCF3 /* CatLateApp.swift */,
 				C49DCC7E897DE11F66DCCDE0 /* ContentView.swift */,
 				24BD1659A5AC040810644A24 /* SpeechPlaybackService.swift */,
@@ -86,6 +89,7 @@
 			buildConfigurationList = 0595545955E11C5A0E88200E /* Build configuration list for PBXNativeTarget "CatLate" */;
 			buildPhases = (
 				7D7247F4C733A22BDBE64366 /* Sources */,
+				86503AA9C2539347B0D9BFAC /* Resources */,
 			);
 			buildRules = (
 			);
@@ -152,6 +156,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		86503AA9C2539347B0D9BFAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D711ACF81B97EEA32A1DAD94 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7D7247F4C733A22BDBE64366 /* Sources */ = {
