@@ -1,0 +1,26 @@
+name: CatLate
+
+settings:
+  base:
+    PRODUCT_BUNDLE_IDENTIFIER: com.catlyte
+    SWIFT_VERSION: 5.0
+    IPHONEOS_DEPLOYMENT_TARGET: 18.0
+    MARKETING_VERSION: 1.0
+    CURRENT_PROJECT_VERSION: 1
+    TARGETED_DEVICE_FAMILY: "1,2"
+    ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: NO
+    SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+
+targets:
+  CatLate:
+    type: application
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: CatLate
+        excludes:
+          - Info.plist
+    settings:
+      base:
+        PRODUCT_NAME: CatLate
+        INFOPLIST_FILE: CatLate/Info.plist
