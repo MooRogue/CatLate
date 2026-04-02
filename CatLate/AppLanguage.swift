@@ -29,6 +29,25 @@ enum AppLanguage: String, CaseIterable, Identifiable {
         }
     }
 
+    var nativeTitle: String {
+        switch self {
+        case .english: "English"
+        case .spanish: "Español"
+        case .french: "Français"
+        case .german: "Deutsch"
+        case .italian: "Italiano"
+        case .portuguese: "Português"
+        case .japanese: "日本語"
+        case .korean: "한국어"
+        case .chineseSimplified: "简体中文"
+        case .arabic: "العربية"
+        }
+    }
+
+    var englishSubtitle: String? {
+        nativeTitle == title ? nil : title
+    }
+
     var shortTitle: String {
         switch self {
         case .chineseSimplified:

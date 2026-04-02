@@ -159,6 +159,22 @@ struct ContentView: View {
                 viewModel.playTranslation()
             }
 
+            if viewModel.isTranslating {
+                Button("Stop Translating") {
+                    viewModel.cancelTranslation()
+                }
+                .font(.system(.headline, design: .rounded, weight: .semibold))
+                .foregroundStyle(Color(red: 0.16, green: 0.22, blue: 0.39))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 16)
+                .background(.white.opacity(0.84), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .stroke(Color.white.opacity(0.95), lineWidth: 1)
+                )
+                .buttonStyle(.plain)
+            }
+
             if viewModel.canHearOriginal {
                 Button {
                     viewModel.playOriginal()
@@ -267,11 +283,21 @@ struct ContentView: View {
                     .font(.system(.caption, design: .rounded, weight: .heavy))
                     .foregroundStyle(.white.opacity(0.7))
 
-                Text(language.title)
-                    .font(.system(.title2, design: .rounded, weight: .bold))
-                    .foregroundStyle(.white)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(language.nativeTitle)
+                        .font(.system(.title2, design: .rounded, weight: .bold))
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+
+                    if let englishSubtitle = language.englishSubtitle {
+                        Text(englishSubtitle)
+                            .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                            .foregroundStyle(.white.opacity(0.88))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.8)
+                    }
+                }
 
                 Text(position.subtitle)
                     .font(.system(.subheadline, design: .rounded, weight: .medium))
@@ -281,7 +307,7 @@ struct ContentView: View {
             }
             .frame(
                 maxWidth: .infinity,
-                minHeight: prefersSingleColumnLayout ? 92 : 144,
+                minHeight: prefersSingleColumnLayout ? 108 : 152,
                 alignment: .leading
             )
             .padding(18)
@@ -427,46 +453,87 @@ private struct LanguagePickerView: View {
 
     @Environment(\.dismiss) private var dismiss
 
+    private let pickerBackground = Color(red: 0.96, green: 0.94, blue: 0.89)
+    private let pickerCardBackground = Color.white.opacity(0.97)
+    private let pickerCardBorder = Color(red: 0.85, green: 0.81, blue: 0.74)
+    private let pickerPrimaryText = Color(red: 0.10, green: 0.13, blue: 0.22)
+    private let pickerSecondaryText = Color(red: 0.29, green: 0.33, blue: 0.43)
+    private let pickerSelectedBackground = Color(red: 0.16, green: 0.24, blue: 0.47)
+    private let pickerSelectedSecondaryText = Color.white.opacity(0.82)
+
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 12) {
+                VStack(spacing: 14) {
                     ForEach(AppLanguage.allCases) { language in
                         Button {
                             onSelect(language)
                             dismiss()
                         } label: {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(language.title)
-                                        .font(.system(.title3, design: .rounded, weight: .bold))
-                                    Text(language.speechLocaleIdentifier)
-                                        .font(.system(.subheadline, design: .rounded, weight: .medium))
-                                        .foregroundStyle(.secondary)
-                                }
-
-                                Spacer()
-
-                                if language == selectedLanguage {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .font(.system(size: 26))
-                                        .foregroundStyle(Color(red: 0.11, green: 0.36, blue: 0.82))
-                                }
-                            }
-                            .foregroundStyle(.primary)
-                            .padding(18)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(Color.white, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+                            languageRow(for: language)
                         }
                         .buttonStyle(.plain)
                     }
                 }
                 .padding(20)
             }
-            .background(Color(red: 0.96, green: 0.94, blue: 0.89))
+            .background(pickerBackground)
             .navigationTitle(position.title)
             .navigationBarTitleDisplayMode(.inline)
         }
+    }
+
+    private func languageRow(for language: AppLanguage) -> some View {
+        let isSelected = language == selectedLanguage
+        let primaryTextColor = isSelected ? Color.white : pickerPrimaryText
+        let secondaryTextColor = isSelected ? pickerSelectedSecondaryText : pickerSecondaryText
+
+        return HStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 7) {
+                Text(language.nativeTitle)
+                    .font(.system(.title3, design: .rounded, weight: .bold))
+                    .foregroundStyle(primaryTextColor)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+
+                if let englishSubtitle = language.englishSubtitle {
+                    Text(englishSubtitle)
+                        .font(.system(.headline, design: .rounded, weight: .semibold))
+                        .foregroundStyle(secondaryTextColor)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                }
+
+                Text(language.speechLocaleIdentifier)
+                    .font(.system(.caption, design: .rounded, weight: .bold))
+                    .foregroundStyle(secondaryTextColor)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(
+                        isSelected ? Color.white.opacity(0.14) : Color(red: 0.93, green: 0.91, blue: 0.86),
+                        in: Capsule()
+                    )
+            }
+
+            Spacer(minLength: 0)
+
+            if isSelected {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 28))
+                    .foregroundStyle(.white)
+            }
+        }
+        .padding(18)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            isSelected ? pickerSelectedBackground : pickerCardBackground,
+            in: RoundedRectangle(cornerRadius: 22, style: .continuous)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 22, style: .continuous)
+                .stroke(isSelected ? Color.white.opacity(0.14) : pickerCardBorder, lineWidth: 1)
+        )
+        .shadow(color: .black.opacity(isSelected ? 0.16 : 0.06), radius: isSelected ? 16 : 8, y: isSelected ? 10 : 4)
     }
 }
 
