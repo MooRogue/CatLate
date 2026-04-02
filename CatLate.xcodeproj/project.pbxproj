@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46B00A1C7C03248646EDB316 /* CatLateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6C993EBB3903F36B777070 /* CatLateTests.swift */; };
 		4FF571CB6E55631E00EBF14B /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21E07E5BDF2E39E327C9AD2 /* AppViewModel.swift */; };
 		6D2B3433ED25B5D7EA9D5EDE /* SpeechPlaybackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BD1659A5AC040810644A24 /* SpeechPlaybackService.swift */; };
 		7305666A01894D4B2DC95BE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49DCC7E897DE11F66DCCDE0 /* ContentView.swift */; };
@@ -15,12 +16,24 @@
 		F3A23012EA4D46A49D04A94A /* CatLateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65329164CB0AFE828270CCF3 /* CatLateApp.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		301139DD72A6F8C178A8D595 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FE4E03C9E8D70D5DAB54CE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8014984830A8B86F99615135;
+			remoteInfo = CatLate;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		15457149DB03422327CB6272 /* SpeechRecognizerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerService.swift; sourceTree = "<group>"; };
 		24BD1659A5AC040810644A24 /* SpeechPlaybackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechPlaybackService.swift; sourceTree = "<group>"; };
 		65329164CB0AFE828270CCF3 /* CatLateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLateApp.swift; sourceTree = "<group>"; };
+		AD2C440839460F63CF124C74 /* CatLateTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CatLateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49DCC7E897DE11F66DCCDE0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D21E07E5BDF2E39E327C9AD2 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		DC6C993EBB3903F36B777070 /* CatLateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLateTests.swift; sourceTree = "<group>"; };
 		E44A0DC518C5B8708866F58A /* CatLate.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CatLate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4CC35A485609970F0FE36A /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -30,8 +43,17 @@
 			isa = PBXGroup;
 			children = (
 				B079B19EF3D9267B10EA7362 /* CatLate */,
+				35A1F71735DE9EB2CE26D7B7 /* CatLateTests */,
 				C148256E5B3B61A4DB8BC9AC /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		35A1F71735DE9EB2CE26D7B7 /* CatLateTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC6C993EBB3903F36B777070 /* CatLateTests.swift */,
+			);
+			path = CatLateTests;
 			sourceTree = "<group>";
 		};
 		B079B19EF3D9267B10EA7362 /* CatLate */ = {
@@ -51,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				E44A0DC518C5B8708866F58A /* CatLate.app */,
+				AD2C440839460F63CF124C74 /* CatLateTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,6 +98,24 @@
 			productReference = E44A0DC518C5B8708866F58A /* CatLate.app */;
 			productType = "com.apple.product-type.application";
 		};
+		97ACE36C7BEA76BA4A55633B /* CatLateTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C821C99F6CB451329FE8806E /* Build configuration list for PBXNativeTarget "CatLateTests" */;
+			buildPhases = (
+				E2B67EE4F5E30BEC6252BCC9 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4AC1ECF7B7394BC093C1A27A /* PBXTargetDependency */,
+			);
+			name = CatLateTests;
+			packageProductDependencies = (
+			);
+			productName = CatLateTests;
+			productReference = AD2C440839460F63CF124C74 /* CatLateTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -84,6 +125,12 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					8014984830A8B86F99615135 = {
+						ProvisioningStyle = Automatic;
+					};
+					97ACE36C7BEA76BA4A55633B = {
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 9AEE1D9F2D74003BDD9B495C /* Build configuration list for PBXProject "CatLate" */;
@@ -101,6 +148,7 @@
 			projectRoot = "";
 			targets = (
 				8014984830A8B86F99615135 /* CatLate */,
+				97ACE36C7BEA76BA4A55633B /* CatLateTests */,
 			);
 		};
 /* End PBXProject section */
@@ -119,7 +167,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E2B67EE4F5E30BEC6252BCC9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46B00A1C7C03248646EDB316 /* CatLateTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4AC1ECF7B7394BC093C1A27A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8014984830A8B86F99615135 /* CatLate */;
+			targetProxy = 301139DD72A6F8C178A8D595 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0484CC195A14F972C443E53E /* Release */ = {
@@ -257,7 +321,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CatLate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -270,11 +335,31 @@
 			};
 			name = Debug;
 		};
+		56AF63E2F2B13D6419660C64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.catlyte.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatLate.app/CatLate";
+			};
+			name = Release;
+		};
 		917CBC5B688C3F0F37440D76 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CatLate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -286,6 +371,25 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
+		};
+		E80BE9DE2079C095EE98FEA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.catlyte.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatLate.app/CatLate";
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -304,6 +408,15 @@
 			buildConfigurations = (
 				26347A6F488658673BAD8399 /* Debug */,
 				0484CC195A14F972C443E53E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C821C99F6CB451329FE8806E /* Build configuration list for PBXNativeTarget "CatLateTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E80BE9DE2079C095EE98FEA5 /* Debug */,
+				56AF63E2F2B13D6419660C64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

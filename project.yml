@@ -1,5 +1,8 @@
 name: CatLate
 
+options:
+  minimumXcodeGenVersion: 2.45.0
+
 settings:
   base:
     PRODUCT_BUNDLE_IDENTIFIER: com.catlyte
@@ -22,5 +25,39 @@ targets:
           - Info.plist
     settings:
       base:
+        CODE_SIGN_IDENTITY: ""
+        CODE_SIGN_STYLE: Automatic
         PRODUCT_NAME: CatLate
         INFOPLIST_FILE: CatLate/Info.plist
+  CatLateTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: CatLateTests
+    dependencies:
+      - target: CatLate
+    settings:
+      base:
+        CODE_SIGN_STYLE: Automatic
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.catlyte.tests
+
+schemes:
+  CatLate:
+    build:
+      targets:
+        CatLate: all
+        CatLateTests: [test]
+    test:
+      gatherCoverageData: true
+      targets:
+        - name: CatLateTests
+    run:
+      config: Debug
+    archive:
+      config: Release
+    profile:
+      config: Release
+    analyze:
+      config: Debug
