@@ -9,6 +9,8 @@ struct PendingTranslation: Identifiable, Equatable {
 
 @MainActor
 final class AppViewModel: ObservableObject {
+    private static let translationTimeoutNanoseconds: UInt64 = 30_000_000_000
+
     @Published var direction: ConversationDirection = .default
     @Published var sourceTranscript = ""
     @Published var translatedText = ""
@@ -231,7 +233,7 @@ final class AppViewModel: ObservableObject {
     private func scheduleTranslationTimeout(for request: PendingTranslation) {
         cancelTranslationTimeout()
         translationTimeoutTask = Task { [weak self] in
-            try? await Task.sleep(nanoseconds: 15_000_000_000)
+            try? await Task.sleep(nanoseconds: Self.translationTimeoutNanoseconds)
             guard !Task.isCancelled else { return }
             await self?.expireTranslationIfNeeded(for: request)
         }
@@ -249,13 +251,21 @@ final class AppViewModel: ObservableObject {
         isTranslating = false
         pendingTranslation = nil
         translatedText = ""
-        errorMessage = "Translation took too long. Tap Speak and try again."
+        errorMessage = "Translation did not finish within 30 seconds. If this is the first time using \(request.direction.source.title) to \(request.direction.target.title), iOS may still be preparing or downloading translation data. Stay on Wi‑Fi and try again."
         statusMessage = errorMessage ?? "Translation failed."
     }
 
     private func translationMessage(for error: Error) -> String {
         if error is CancellationError {
-            return "Translation was interrupted. Tap Speak and try again."
+            return "Translation was interrupted before it finished. Tap Speak and try again."
+        }
+
+        if TranslationError.unsupportedSourceLanguage ~= error {
+            return "\(direction.source.title) is not available for translation on this iPhone."
+        }
+
+        if TranslationError.unsupportedTargetLanguage ~= error {
+            return "\(direction.target.title) is not available for translation on this iPhone."
         }
 
         if TranslationError.unsupportedLanguagePairing ~= error {
@@ -268,6 +278,24 @@ final class AppViewModel: ObservableObject {
 
         if TranslationError.nothingToTranslate ~= error {
             return "There was nothing to translate yet."
+        }
+
+        if #available(iOS 26.0, *), TranslationError.notInstalled ~= error {
+            return "Translation data for \(direction.source.title) and \(direction.target.title) is not ready yet. iOS may need to download language data first. Stay on Wi‑Fi and try again."
+        }
+
+        if TranslationError.internalError ~= error {
+            return "The translation service hit an internal error. If you just switched languages, wait a moment and try again."
+        }
+
+        if let localizedError = error as? LocalizedError {
+            if let failureReason = localizedError.failureReason, !failureReason.isEmpty {
+                return "\(localizedError.errorDescription ?? "Translation failed.") \(failureReason)"
+            }
+
+            if let errorDescription = localizedError.errorDescription, !errorDescription.isEmpty {
+                return errorDescription
+            }
         }
 
         return error.localizedDescription
