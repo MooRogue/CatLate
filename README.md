@@ -43,7 +43,7 @@ It is built as a native SwiftUI iPhone app using Apple's speech recognition, on-
 
 ## Requirements
 
-- Xcode 26.4 or newer
+- Xcode 27.1 or newer
 - iOS 18.0 or newer
 - Microphone permission
 - Speech Recognition permission
@@ -92,3 +92,7 @@ xcrun simctl launch booted project.catlyte.CatLate
 - On first use, iOS may prompt to download language assets for translation.
 - Translation support depends on Apple's supported language pairs on the device.
 - The app currently targets iOS only.
+
+## Duo and resizable displays
+
+Build with Xcode 27.1 or later for native expanded-display support. The maintained app supports portrait, landscape, and window resizing under its original name, with its existing bundle identity. No separate Duo edition or device-specific screen dimensions are needed. Keep interactive content inside the system safe areas.
