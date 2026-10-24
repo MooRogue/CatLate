@@ -28,6 +28,10 @@ It is built as a native SwiftUI iPhone app using Apple's speech recognition, on-
 - On-device Apple translation workflow using the `Translation` framework
 - Spoken playback of both the translated phrase and the original phrase
 
+## Appearance
+
+CatLate follows the system light or dark appearance, including its cards, transcripts, status panels, and language picker. The app icon includes a dark variant for the iOS Home Screen appearance setting.
+
 ## Supported Languages
 
 - English

@@ -10,8 +10,8 @@ struct ContentView: View {
 
     private let background = LinearGradient(
         colors: [
-            Color(red: 0.98, green: 0.95, blue: 0.88),
-            Color(red: 0.95, green: 0.89, blue: 0.78)
+            Color("ThemeBackgroundTop"),
+            Color("ThemeBackgroundBottom")
         ],
         startPoint: .topLeading,
         endPoint: .bottomTrailing
@@ -97,21 +97,21 @@ struct ContentView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Tap. Talk. Hear.")
                 .font(.system(size: 38, weight: .bold, design: .rounded))
-                .foregroundStyle(Color(red: 0.13, green: 0.18, blue: 0.31))
+                .foregroundStyle(Color("ThemePrimaryText"))
 
             Text("A simple translator built for people who want big buttons and clear steps instead of small menus.")
                 .font(.system(.title3, design: .rounded, weight: .medium))
-                .foregroundStyle(Color(red: 0.28, green: 0.30, blue: 0.39))
+                .foregroundStyle(Color("ThemeSecondaryText"))
                 .fixedSize(horizontal: false, vertical: true)
 
             stepGuide
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(24)
-        .background(.white.opacity(0.82), in: RoundedRectangle(cornerRadius: 28, style: .continuous))
+        .background(Color("ThemeSurface"), in: RoundedRectangle(cornerRadius: 28, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .stroke(Color.white.opacity(0.9), lineWidth: 1.5)
+                .stroke(Color("ThemeSurfaceBorder"), lineWidth: 1.5)
         )
         .shadow(color: .black.opacity(0.08), radius: 22, y: 10)
     }
@@ -133,7 +133,7 @@ struct ContentView: View {
             }
         }
         .padding(20)
-        .background(Color(red: 0.16, green: 0.22, blue: 0.39), in: RoundedRectangle(cornerRadius: 28, style: .continuous))
+        .background(Color("ThemeLanguageSurface"), in: RoundedRectangle(cornerRadius: 28, style: .continuous))
         .shadow(color: .black.opacity(0.14), radius: 18, y: 10)
     }
 
@@ -164,13 +164,13 @@ struct ContentView: View {
                     viewModel.cancelTranslation()
                 }
                 .font(.system(.headline, design: .rounded, weight: .semibold))
-                .foregroundStyle(Color(red: 0.16, green: 0.22, blue: 0.39))
+                .foregroundStyle(Color("ThemePrimaryText"))
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 16)
-                .background(.white.opacity(0.84), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+                .background(Color("ThemeSurface"), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
                 .overlay(
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .stroke(Color.white.opacity(0.95), lineWidth: 1)
+                        .stroke(Color("ThemeSurfaceBorder"), lineWidth: 1)
                 )
                 .buttonStyle(.plain)
             }
@@ -181,10 +181,10 @@ struct ContentView: View {
                 } label: {
                     Text("Hear My Original Words")
                         .font(.system(.headline, design: .rounded, weight: .bold))
-                        .foregroundStyle(Color(red: 0.16, green: 0.22, blue: 0.39))
+                        .foregroundStyle(Color("ThemePrimaryText"))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 18)
-                        .background(.white.opacity(0.82), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+                        .background(Color("ThemeSurface"), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
                 }
                 .buttonStyle(.plain)
             }
@@ -267,7 +267,7 @@ struct ContentView: View {
                 .font(.system(size: 34))
                 .foregroundStyle(Color(red: 0.88, green: 0.40, blue: 0.20))
                 .frame(width: 64, height: 64)
-                .background(.white, in: Circle())
+                .background(Color("ThemeSwapSurface"), in: Circle())
         }
         .buttonStyle(.plain)
         .disabled(viewModel.isListening || viewModel.isTranslating)
@@ -322,19 +322,19 @@ struct ContentView: View {
         VStack(alignment: .leading, spacing: 14) {
             Text(title)
                 .font(.system(.headline, design: .rounded, weight: .heavy))
-                .foregroundStyle(Color(red: 0.16, green: 0.22, blue: 0.39))
+                .foregroundStyle(Color("ThemePrimaryText"))
 
             Text(text.isEmpty ? placeholder : text)
                 .font(.system(size: 28, weight: .semibold, design: .rounded))
-                .foregroundStyle(text.isEmpty ? Color.black.opacity(0.34) : Color.black.opacity(0.82))
+                .foregroundStyle(text.isEmpty ? Color("ThemePlaceholderText") : Color("ThemeTranscriptText"))
                 .frame(maxWidth: .infinity, minHeight: 120, alignment: .topLeading)
                 .multilineTextAlignment(.leading)
         }
         .padding(22)
-        .background(.white.opacity(0.84), in: RoundedRectangle(cornerRadius: 28, style: .continuous))
+        .background(Color("ThemeSurface"), in: RoundedRectangle(cornerRadius: 28, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: 28, style: .continuous)
-                .stroke(Color.white.opacity(0.95), lineWidth: 1)
+                .stroke(Color("ThemeSurfaceBorder"), lineWidth: 1)
         )
     }
 
@@ -364,7 +364,7 @@ struct ContentView: View {
     private var statusBackground: LinearGradient {
         if viewModel.errorMessage != nil {
             return LinearGradient(
-                colors: [Color(red: 0.72, green: 0.24, blue: 0.18), Color(red: 0.90, green: 0.41, blue: 0.22)],
+                colors: [Color("ThemeErrorStart"), Color("ThemeErrorEnd")],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -372,7 +372,7 @@ struct ContentView: View {
 
         if viewModel.isListening {
             return LinearGradient(
-                colors: [Color(red: 0.08, green: 0.40, blue: 0.83), Color(red: 0.17, green: 0.61, blue: 0.93)],
+                colors: [Color("ThemeListeningStart"), Color("ThemeListeningEnd")],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -380,14 +380,14 @@ struct ContentView: View {
 
         if viewModel.isTranslating {
             return LinearGradient(
-                colors: [Color(red: 0.75, green: 0.47, blue: 0.14), Color(red: 0.93, green: 0.66, blue: 0.20)],
+                colors: [Color("ThemeWorkingStart"), Color("ThemeWorkingEnd")],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
         }
 
         return LinearGradient(
-            colors: [Color(red: 0.15, green: 0.46, blue: 0.34), Color(red: 0.26, green: 0.65, blue: 0.48)],
+            colors: [Color("ThemeReadyStart"), Color("ThemeReadyEnd")],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
@@ -412,7 +412,7 @@ private struct StepBadge: View {
                     numberBadge
                     Text(text)
                         .font(.system(.subheadline, design: .rounded, weight: .bold))
-                        .foregroundStyle(Color(red: 0.16, green: 0.22, blue: 0.39))
+                        .foregroundStyle(Color("ThemePrimaryText"))
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
                         .minimumScaleFactor(0.85)
@@ -420,19 +420,19 @@ private struct StepBadge: View {
                 .frame(maxWidth: .infinity, minHeight: 92)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 12)
-                .background(Color.white.opacity(0.8), in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+                .background(Color("ThemeStepSurface"), in: RoundedRectangle(cornerRadius: 22, style: .continuous))
 
             case .row:
                 HStack(spacing: 12) {
                     numberBadge
                     Text(text)
                         .font(.system(.headline, design: .rounded, weight: .bold))
-                        .foregroundStyle(Color(red: 0.16, green: 0.22, blue: 0.39))
+                        .foregroundStyle(Color("ThemePrimaryText"))
                     Spacer(minLength: 0)
                 }
                 .padding(.horizontal, 14)
                 .padding(.vertical, 12)
-                .background(Color.white.opacity(0.8), in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+                .background(Color("ThemeStepSurface"), in: RoundedRectangle(cornerRadius: 18, style: .continuous))
             }
         }
     }
@@ -453,12 +453,12 @@ private struct LanguagePickerView: View {
 
     @Environment(\.dismiss) private var dismiss
 
-    private let pickerBackground = Color(red: 0.96, green: 0.94, blue: 0.89)
-    private let pickerCardBackground = Color.white.opacity(0.97)
-    private let pickerCardBorder = Color(red: 0.85, green: 0.81, blue: 0.74)
-    private let pickerPrimaryText = Color(red: 0.10, green: 0.13, blue: 0.22)
-    private let pickerSecondaryText = Color(red: 0.29, green: 0.33, blue: 0.43)
-    private let pickerSelectedBackground = Color(red: 0.16, green: 0.24, blue: 0.47)
+    private let pickerBackground = Color("ThemePickerBackground")
+    private let pickerCardBackground = Color("ThemePickerSurface")
+    private let pickerCardBorder = Color("ThemePickerBorder")
+    private let pickerPrimaryText = Color("ThemePickerPrimary")
+    private let pickerSecondaryText = Color("ThemePickerSecondary")
+    private let pickerSelectedBackground = Color("ThemePickerSelected")
     private let pickerSelectedSecondaryText = Color.white.opacity(0.82)
 
     var body: some View {
@@ -510,7 +510,7 @@ private struct LanguagePickerView: View {
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
                     .background(
-                        isSelected ? Color.white.opacity(0.14) : Color(red: 0.93, green: 0.91, blue: 0.86),
+                        isSelected ? Color.white.opacity(0.14) : Color("ThemeLocaleBackground"),
                         in: Capsule()
                     )
             }
